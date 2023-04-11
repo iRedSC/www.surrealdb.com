@@ -60,7 +60,7 @@
 			<tr>
 				<td>
 					<a href="#Instance">
-						<Ascua::Prism::Inline @language="py" @code="Surreal(url)" />
+						<Ascua::Prism::Inline @language="py" @code="Surreal(url: Optional[str], token: Optional[str])" />
 					</a>
 					<l faint r>static</l>
 				</td>
@@ -69,7 +69,7 @@
 			<tr>
 				<td>
 					<a href="#connect">
-						<Ascua::Prism::Inline @language="py" @code="db.connect()" />
+						<Ascua::Prism::Inline @language="py" @code="db.connect(url: Optional[str])" />
 					</a>
 				</td>
 				<td>Connects to a local or remote database endpoint</td>
@@ -85,7 +85,7 @@
 			<tr>
 				<td>
 					<a href="#use">
-						<Ascua::Prism::Inline @language="py" @code="db.use(ns, db)" />
+						<Ascua::Prism::Inline @language="py" @code="db.use(namespace: str, database: str)" />
 					</a>
 				</td>
 				<td>Switch to a specific namespace and database</td>
@@ -93,7 +93,7 @@
 			<tr>
 				<td>
 					<a href="#signup">
-						<Ascua::Prism::Inline @language="py" @code="db.signup(vars)" />
+						<Ascua::Prism::Inline @language="py" @code="db.signup(vars: Dict[str, Any])" />
 					</a>
 				</td>
 				<td>Signs this connection up to a specific authentication scope</td>
@@ -101,7 +101,7 @@
 			<tr>
 				<td>
 					<a href="#signin">
-						<Ascua::Prism::Inline @language="py" @code="db.signin(vars)" />
+						<Ascua::Prism::Inline @language="py" @code="db.signin(vars: Dict[str, Any])" />
 					</a>
 				</td>
 				<td>Signs this connection in to a specific authentication scope</td>
@@ -117,7 +117,7 @@
 			<tr>
 				<td>
 					<a href="#authenticate">
-						<Ascua::Prism::Inline @language="py" @code="db.authenticate(token)" />
+						<Ascua::Prism::Inline @language="py" @code="db.authenticate(token: str)" />
 					</a>
 				</td>
 				<td>Authenticates the current connection with a JWT token</td>
@@ -125,7 +125,7 @@
 			<tr>
 				<td>
 					<a href="#let">
-						<Ascua::Prism::Inline @language="py" @code="db.let(key, val)" />
+						<Ascua::Prism::Inline @language="py" @code="db.let(key: str, value: Any)" />
 					</a>
 				</td>
 				<td>Assigns a value as a parameter for this connection</td>
@@ -133,7 +133,7 @@
 			<tr>
 				<td>
 					<a href="#query">
-						<Ascua::Prism::Inline @language="py" @code="db.query(sql, vars)" />
+						<Ascua::Prism::Inline @language="py" @code="db.query(sql: str, vars: Optional[Dict[str, Any]])" />
 					</a>
 				</td>
 				<td>Runs a set of SurrealQL statements against the database</td>
@@ -141,7 +141,7 @@
 			<tr>
 				<td>
 					<a href="#select">
-						<Ascua::Prism::Inline @language="py" @code="db.select(thing)" />
+						<Ascua::Prism::Inline @language="py" @code="db.select(thing: str)" />
 					</a>
 				</td>
 				<td>Selects all records in a table, or a specific record</td>
@@ -149,7 +149,7 @@
 			<tr>
 				<td>
 					<a href="#create">
-						<Ascua::Prism::Inline @language="py" @code="db.create(thing, data)" />
+						<Ascua::Prism::Inline @language="py" @code="db.create(thing: str, data: Optional[Dict[str, Any]])" />
 					</a>
 				</td>
 				<td>Creates a record in the database</td>
@@ -157,7 +157,7 @@
 			<tr>
 				<td>
 					<a href="#update">
-						<Ascua::Prism::Inline @language="py" @code="db.update(thing, data)" />
+						<Ascua::Prism::Inline @language="py" @code="db.update(thing: str, data: Optional[Dict[str, Any]])" />
 					</a>
 				</td>
 				<td>Updates all records in a table, or a specific record</td>
@@ -165,7 +165,7 @@
 			<tr>
 				<td>
 					<a href="#merge">
-						<Ascua::Prism::Inline @language="py" @code="db.merge(thing, data)" />
+						<Ascua::Prism::Inline @language="py" @code="db.merge(thing: str, data: Optional[Dict[str, Any]])" />
 					</a>
 				</td>
 				<td>Modifies by deep merging all records in a table, or a specific record, in the database</td>
@@ -173,7 +173,7 @@
 			<tr>
 				<td>
 					<a href="#patch">
-						<Ascua::Prism::Inline @language="py" @code="db.patch(thing, data)" />
+						<Ascua::Prism::Inline @language="py" @code="db.patch(thing: str, data: Optional[Dict[str, Any]])" />
 					</a>
 				</td>
 				<td>Applies <Link @link="https://jsonpatch.com">JSON Patch</Link> changes to all records in a table, or a specific record</td>
@@ -181,7 +181,7 @@
 			<tr>
 				<td>
 					<a href="#delete">
-						<Ascua::Prism::Inline @language="py" @code="db.delete(thing)" />
+						<Ascua::Prism::Inline @language="py" @code="db.delete(thing: str)" />
 					</a>
 				</td>
 				<td>Deletes all records, or a specific record</td>
@@ -195,7 +195,7 @@
 <Layout::Group {{waypoint "Instance"}}>
 
 	<Layout::Text text-l text-f>
-		<h3><Ascua::Prism::Inline @language="py" @code="Surreal(url) / SurrealHTTP(url)" /></h3>
+		<h3><Ascua::Prism::Inline @language="py" @code="Surreal(url: Optional[str] = None, token: Optional[str] = None) / SurrealHTTP(url: str, namespace: str, database: str, username: str, password: str)" /></h3>
 		<p>Surreal is a class that represents a Surreal server.</p>
 		<p>The default way to connect is through WebSockets using <code>Surreal(url)</code></p>
 		<p>If an http client is needed you can use <code>SurrealHTTP(url)</code> but be aware that it is currently not as stable and not as fully implemented.</p>
@@ -239,7 +239,7 @@
 <Layout::Group {{waypoint "connect"}}>
 
 	<Layout::Text text-l text-f>
-		<h3><Ascua::Prism::Inline @language="py" @code="db.connect(url)" /></h3>
+		<h3><Ascua::Prism::Inline @language="py" @code="db.connect(url: Optional[str] = None) -> None" /></h3>
 		<p>Connects to a local or remote database endpoint.</p>
 		<blockquote yellow text="Note">The url is required in either the Surreal class or connect method</blockquote>
 		<Layout::Table>
@@ -276,7 +276,7 @@
 <Layout::Group {{waypoint "close"}}>
 
 	<Layout::Text text-l text-f>
-		<h3><Ascua::Prism::Inline @language="py" @code="db.close()" /></h3>
+		<h3><Ascua::Prism::Inline @language="py" @code="db.close() -> None)" /></h3>
 		<p>Closes the persistent connection to the database.</p>
 		<Code @name="docs-integration-libraries-python-close.py">
 			db.close()
@@ -290,7 +290,7 @@
 <Layout::Group {{waypoint "use"}}>
 
 	<Layout::Text text-l text-f>
-		<h3><Ascua::Prism::Inline @language="py" @code="db.use(ns, db)" /></h3>
+		<h3><Ascua::Prism::Inline @language="py" @code="db.use(namespace: str, database: str) -> None" /></h3>
 		<p>Switch to a specific namespace and database.</p>
 		<Layout::Table>
 			<table>
@@ -334,7 +334,7 @@
 <Layout::Group {{waypoint "signup"}}>
 
 	<Layout::Text text-l text-f>
-		<h3><Ascua::Prism::Inline @language="py" @code="db.signup(vars)" /></h3>
+		<h3><Ascua::Prism::Inline @language="py" @code="db.signup(vars: Dict[str, Any]) -> str" /></h3>
 		<p>Signs up to a specific authentication scope.</p>
 		<Layout::Table>
 			<table>
@@ -375,7 +375,7 @@
 <Layout::Group {{waypoint "signin"}}>
 
 	<Layout::Text text-l text-f>
-		<h3><Ascua::Prism::Inline @language="py" @code="db.signin(vars)" /></h3>
+		<h3><Ascua::Prism::Inline @language="py" @code="db.signin(vars: Dict[str, Any]) -> str" /></h3>
 		<p>Signs in to a specific authentication scope.</p>
 		<Layout::Table>
 			<table>
@@ -413,7 +413,7 @@
 <Layout::Group {{waypoint "invalidate"}}>
 
 	<Layout::Text text-l text-f>
-		<h3><Ascua::Prism::Inline @language="py" @code="db.invalidate()" /></h3>
+		<h3><Ascua::Prism::Inline @language="py" @code="db.invalidate() -> None" /></h3>
 		<p>Invalidates the authentication for the current connection.</p>
 		<Code @name="docs-integration-libraries-python-invalidate.py">
 			await db.invalidate()
@@ -427,7 +427,7 @@
 <Layout::Group {{waypoint "authenticate"}}>
 
 	<Layout::Text text-l text-f>
-		<h3><Ascua::Prism::Inline @language="py" @code="db.authenticate(token)" /></h3>
+		<h3><Ascua::Prism::Inline @language="py" @code="db.authenticate(token: str) -> None" /></h3>
 		<p>Authenticates the current connection with a JWT token.</p>
 		<Layout::Table>
 			<table>
@@ -462,7 +462,7 @@
 <Layout::Group {{waypoint "let"}}>
 
 	<Layout::Text text-l text-f>
-		<h3><Ascua::Prism::Inline @language="py" @code="db.let(key, val)" /></h3>
+		<h3><Ascua::Prism::Inline @language="py" @code="db.let(key: str, value: Any) -> None" /></h3>
 		<p>Assigns a value as a parameter for this connection.</p>
 		<Layout::Table>
 			<table>
@@ -514,7 +514,7 @@
 <Layout::Group {{waypoint "query"}}>
 
 	<Layout::Text text-l text-f>
-		<h3><Ascua::Prism::Inline @language="py" @code="db.query(sql, vars)" /></h3>
+		<h3><Ascua::Prism::Inline @language="py" @code="db.query(sql: str, vars: Optional[Dict[str, Any]] = None) -> List[Dict[str, Any]]" /></h3>
 		<p>Runs a set of SurrealQL statements against the database.</p>
 		<Layout::Table>
 			<table>
@@ -565,7 +565,7 @@
 <Layout::Group {{waypoint "select"}}>
 
 	<Layout::Text text-l text-f>
-		<h3><Ascua::Prism::Inline @language="py" @code="db.select(thing)" /></h3>
+		<h3><Ascua::Prism::Inline @language="py" @code="db.select(thing: str) -> List[Dict[str, Any]]" /></h3>
 		<p>Selects all records in a table, or a specific record, from the database.</p>
 		<Layout::Table>
 			<table>
@@ -607,7 +607,7 @@
 <Layout::Group {{waypoint "create"}}>
 
 	<Layout::Text text-l text-f>
-		<h3><Ascua::Prism::Inline @language="py" @code="db.create(thing, data)" /></h3>
+		<h3><Ascua::Prism::Inline @language="py" @code="db.create(thing: str, data: Optional[Dict[str, Any]] = None) -> List[Dict[str, Any]]" /></h3>
 		<p>Creates a record in the database.</p>
 		<Layout::Table>
 			<table>
@@ -664,7 +664,7 @@
 <Layout::Group {{waypoint "update"}}>
 
 	<Layout::Text text-l text-f>
-		<h3><Ascua::Prism::Inline @language="py" @code="db.update(thing, data)" /></h3>
+		<h3><Ascua::Prism::Inline @language="py" @code="db.updatething, data: Optional[Dict[str, Any]]) -> List[Dict[str, Any]]" /></h3>
 		<p>Updates all records in a table, or a specific record, in the database.</p>
 		<blockquote yellow text="Note">This function replaces the current document / record data with the specified data.</blockquote>
 		<Layout::Table>
@@ -722,7 +722,7 @@
 <Layout::Group {{waypoint "merge"}}>
 
 	<Layout::Text text-l text-f>
-		<h3><Ascua::Prism::Inline @language="py" @code="db.merge(thing, data)" /></h3>
+		<h3><Ascua::Prism::Inline @language="py" @code="db.merge(thing: str, data: Optional[Dict[str, Any]]) -> List[Dict[str, Any]]" /></h3>
 		<p>Modifies by deep merging all records in a table, or a specific record, in the database.</p>
 		<blockquote yellow text="Note">This function merges the current document / record data with the specified data.</blockquote>
 		<Layout::Table>
@@ -781,7 +781,7 @@
 <Layout::Group {{waypoint "patch"}}>
 
 	<Layout::Text text-l text-f>
-		<h3><Ascua::Prism::Inline @language="py" @code="db.patch(thing, data)" /></h3>
+		<h3><Ascua::Prism::Inline @language="py" @code="db.patch(thing: str, data: Optional[Dict[str, Any]]) -> List[Dict[str, Any]]" /></h3>
 		<p>Applies <Link @link="https://jsonpatch.com">JSON Patch</Link> changes to all records, or a specific record, in the database.</p>
 		<blockquote yellow text="Note">This function patches the current document / record data with the specified <Link @link="https://jsonpatch.com">JSON Patch</Link> data.</blockquote>
 		<Layout::Table>
@@ -839,7 +839,7 @@
 <Layout::Group {{waypoint "delete"}}>
 
 	<Layout::Text text-l text-f>
-		<h3><Ascua::Prism::Inline @language="py" @code="db.delete(thing)" /></h3>
+		<h3><Ascua::Prism::Inline @language="py" @code="db.delete(thing: str) -> List[Dict[str, Any]]" /></h3>
 		<p>Deletes all records in a table, or a specific record, from the database.</p>
 		<Layout::Table>
 			<table>
